@@ -12,28 +12,10 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
 const series = require('./routes/series')
-
-const createInitialUsers = async () => {
-    const total = await User.countDocuments({})
-    if(total === 0){
-        const user = new User({
-            username: 'tulio',
-            password:'123456',
-            roles:['restrito','admin']
-        })
-        await user.save()
-
-        const user2 = await new User({
-            username:'restrito',
-            password:'123456',
-            roles:['restrito']
-        })
-
-        await user2.save()
-    }
-}
+const users = require('./routes/users')
 
 app.use('/series',series)
+app.use('/users',users)
 
 app.post('/auth',async(req, res) =>{
     const user = req.body
@@ -59,6 +41,27 @@ app.post('/auth',async(req, res) =>{
         res.send({success: false, message:'Wrong credentials'})
     }
 })
+
+const createInitialUsers = async () => {
+    const total = await User.countDocuments({})
+    if(total === 0){
+        const user = new User({
+            username: 'tulio',
+            password:'123456',
+            roles:['restrito','admin']
+        })
+        await user.save()
+
+        const user2 = await new User({
+            username:'restrito',
+            password:'123456',
+            roles:['restrito']
+        })
+
+        await user2.save()
+    }
+}
+
 mongoose
     .connect(mongo,{useNewUrlParser:true})
     .then(()=>{
