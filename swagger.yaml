@@ -50,6 +50,9 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Serie"
+      security:
+      - api_key:
+        - "restrito"
     post:
       tags:
       - "serie"
