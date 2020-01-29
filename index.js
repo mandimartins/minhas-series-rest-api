@@ -8,8 +8,19 @@ const User = require('./models/user')
 const jwt = require('jsonwebtoken')
 const jwtSecret = 'xyz1234abcd4321'
 
+const cors = require('cors')
+
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
+app.use(cors({
+    // origin: (origin,callback)=>{
+    //     if(origin === 'http://127.0.0.2:8080'){
+    //         callback(null, true)
+    //     }else{
+    //         callback(new Error('Not allowrd by CORS'))
+    //     }
+    // }
+}))
 
 const series = require('./routes/series')
 const users = require('./routes/users')
@@ -61,6 +72,11 @@ const createInitialUsers = async () => {
         await user2.save()
     }
 }
+
+const swaggerUi = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDoc = YAML.load('./swagger.yaml')
+app.use('/docs',swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
 mongoose
     .connect(mongo,{useNewUrlParser:true})
