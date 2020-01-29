@@ -79,7 +79,7 @@ const swaggerDoc = YAML.load('./swagger.yaml')
 app.use('/docs',swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
 mongoose
-    .connect(mongo,{useNewUrlParser:true})
+    .connect(mongo,{useNewUrlParser:true, useUnifiedTopology:true})
     .then(()=>{
         createInitialUsers()
         app.listen(port, ()=>console.log('listening...'))
