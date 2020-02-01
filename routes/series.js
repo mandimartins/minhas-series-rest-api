@@ -12,7 +12,6 @@ router.use(async(req, res, next)=>{
 
         try{
             const payload = jwt.verify(token, jwtSecret)
-            console.log(payload)
             if(payload.roles.includes('restrito')){
                 next()
             }else{
