@@ -16,7 +16,7 @@ Projeto desenvolvido no treinamento [Fullstack Master](https://www.devpleno.com)
 
 <img src="/img/swagger.png">
   <br/>
-<img src="/img/swagger.png">
+<img src="/img/swagger2.png">
 
 ## Built With
 
