@@ -8,7 +8,7 @@ Projeto desenvolvido no treinamento [Fullstack Master](https://www.devpleno.com)
 
 - Autorização baseada em papeis
 
-- Rotas protegias
+- Rotas protegidas
 
 - Senhas Criptografadas
 
